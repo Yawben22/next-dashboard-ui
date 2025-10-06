@@ -1,26 +1,40 @@
-# Lama Dev School Management Dashboard
+# Hospital Management System (Full‑Stack)
 
-## Getting Started
+Monorepo with Next.js frontend and FastAPI backend.
 
-First, run the development server:
+## Backend
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd backend
+python3 -m pip install --user -r requirements.txt
+python3 -m uvicorn app.main:app --reload --port 8000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Seed demo data (optional):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+python3 -m app.seed
+```
 
-## Learn More
+## Frontend
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+npm run dev
+```
 
-- [Lama Dev Youtube Channel](https://youtube.com/lamadev) 
-- [Next.js](https://nextjs.org/learn)
+Open http://localhost:3000. Frontend rewrites `/api/*` to `http://localhost:8000/api/*`.
+
+## Auth
+
+- Register: POST `/api/auth/register` (email, password, full_name, role)
+- Login: POST `/api/auth/login` (OAuth2 form) → bearer token
+
+## Core endpoints
+
+- Patients: GET/POST `/api/patients`
+- Departments: GET/POST `/api/departments`
+- Appointments: GET/POST `/api/appointments`
+- Doctors, Rooms, Admissions, Prescriptions, Lab Tests, Vitals, Medical Records
+- Billing: invoices, items, payments
+- Inventory: items CRUD
